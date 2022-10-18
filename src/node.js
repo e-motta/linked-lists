@@ -1,6 +1,8 @@
 const Node = (value=null, nextNode=null) => {
-  this.value = value;
-  this.nextNode = nextNode;
+  return {
+    value,
+    nextNode,
+  }
 }
 
 export default Node;
