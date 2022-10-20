@@ -90,6 +90,47 @@ const LinkedList = () => {
     return `( ${nextNode.value} ) -> ${toString(nextNode.nextNode)}`;
   };
 
+  const insertAt = (value, index) => {
+    const newNode = Node(value);
+    if (index > size() || index < 0) {
+      throw Error('Index out of range');
+    }
+    if (size() === 1) {
+      list.nextNode = newNode;
+    } else if (index === 0) {
+      const currentAt = at(index);
+      newNode.nextNode = currentAt;
+      list.nextNode = newNode;
+    } else if (index === size()) {
+      const beforeAt = at(index - 1);
+      beforeAt.nextNode = newNode;
+    } else {
+      const beforeAt = at(index - 1);
+      const currentAt = at(index);
+      newNode.nextNode = currentAt;
+      beforeAt.nextNode = newNode;
+    }
+  };
+
+  const removeAt = (index) => {
+    if (index > size() - 1 || index < 0) {
+      throw Error('Index out of range');
+    }
+    if (size() === 1) {
+      list.nextNode = null;
+    } else if (index === 0) {
+      const afterAt = at(index + 1);
+      list.nextNode = afterAt;
+    } else if (index === size() - 1) {
+      const beforeAt = at(index - 1);
+      beforeAt.nextNode = null;
+    } else {
+      const beforeAt = at(index - 1);
+      const afterAt = at(index + 1);
+      beforeAt.nextNode = afterAt;
+    }
+  };
+
   return {
     list,
     head,
@@ -102,6 +143,8 @@ const LinkedList = () => {
     contains,
     find,
     toString,
+    insertAt,
+    removeAt,
   };
 };
 
