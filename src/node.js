@@ -1,8 +1,6 @@
-const Node = (value=null, nextNode=null) => {
-  return {
-    value,
-    nextNode,
-  }
-}
+const Node = (value = null) => ({
+  value,
+  nextNode: null,
+});
 
 export default Node;
